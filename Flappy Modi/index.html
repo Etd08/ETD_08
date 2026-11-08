@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flappy Modi Ji</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1 class="title">Flappy <span style="color:#f97316;">Modi Ji</span></h1>
+  <p class="info">Press SPACE / tap screen to jump</p>
+
+  <!-- Fixed logical size, will be scaled by CSS -->
+  <canvas id="gameCanvas" width="400" height="600"></canvas>
+
+  <div class="score-board">
+    <span>Score: <span id="score">0</span></span>
+    <span>Best: <span id="bestScore">0</span></span>
+  </div>
+
+  <button id="restartBtn">Restart</button>
+  <a href="https://etd08.github.io/ETD_08/flappy-modi-v2/">
+  <button class="change">Change Music Version</button>
+  </a>
+
+  <p class="outro"><u><i><b>Made by Tanmay</b></i></u> 💖</p>
+
+  <audio id="bgMusic" src="Pahala Nasha.mp3" loop></audio>
+  <audio id="bgMusic2" src="Dop-Shop.mp3" loop></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

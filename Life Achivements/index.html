@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Achievements</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#8b5cf6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+
+    <div class="background-grid"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <header class="topbar">
+        <div class="logo">
+            <span class="logo-icon">✦</span>
+            <span>LIFE<span class="accent">.</span>ACHIEVEMENTS</span>
+        </div>
+
+        
+    <button class="profile" id="profileBtn" type="button" aria-label="Open account menu">
+        <span id="guestLoginLabel">Log in or Sign Up</span>
+        <img id="profileAvatar" class="avatar profile-photo hidden" alt="Google profile">
+    </button>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="hero-text">
+                <p class="eyebrow">YOUR PERSONAL PROGRESSION</p>
+                <h1>Life <span>Achievements</span></h1>
+                <p class="hero-subtitle">
+                    There is no finish line. Just things worth experiencing.
+                </p>
+            </div>
+
+            <div class="progress-box">
+                <div class="progress-ring">
+                    <svg viewBox="0 0 120 120">
+                        <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+                        <circle id="overallRing" class="ring-progress"
+                                cx="60" cy="60" r="52"></circle>
+                    </svg>
+
+                    <div class="ring-content">
+                        <strong id="overallPercent">0%</strong>
+                        <span id="overallCount">0 / 99</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <span class="stat-label">COMPLETED</span>
+                <strong id="completedStat">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">REMAINING</span>
+                <strong id="remainingStat">99</strong>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">PROGRESS</span>
+                <strong id="progressStat">0%</strong>
+            </div>
+        </section>
+
+        <!-- LIFE SCORE -->
+        <section class="score-panel">
+            <div class="rank-badge">
+                <div id="rankIcon" class="rank-icon">🌱</div>
+                <div>
+                    <span class="rank-label">CURRENT RANK</span>
+                    <strong id="rankName">BEGINNER</strong>
+                </div>
+            </div>
+
+            <div class="score-main">
+                <div class="score-header">
+                    <span>LIFE SCORE</span>
+                    <strong id="scoreText">0 / 635</strong>
+                </div>
+
+                <div class="score-track">
+                    <div id="scoreFill" class="score-fill"></div>
+                </div>
+
+                <div class="score-footer">
+                    <span id="scoreRankText">Begin your journey</span>
+                    <span id="nextRankText">50 pts → Explorer</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="controls">
+
+            <div class="filters">
+                <button class="filter active" data-filter="all">ALL</button>
+                <button class="filter" data-filter="locked">LOCKED</button>
+                <button class="filter" data-filter="completed">COMPLETED</button>
+            </div>
+
+            <div class="sort-box">
+                <select id="sortSelect">
+                    <option value="default">Default</option>
+                    <option value="rarity">Rarity</option>
+                    <option value="progress">Progress</option>
+                    <option value="title">Title</option>
+                </select>
+            </div>
+
+        </section>
+
+        <section id="achievementGrid" class="achievement-grid"></section>
+
+    </main>
+
+    <!-- DETAILS MODAL -->
+    <div id="detailsModal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeModal()">×</button>
+
+            <div id="modalRarity" class="modal-rarity"></div>
+
+            <div id="modalIcon" class="modal-icon">✦</div>
+
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+
+            <div class="modal-progress">
+                <div class="progress-header">
+                    <span>PROGRESS</span>
+                    <strong id="modalProgressText"></strong>
+                </div>
+
+                <div class="progress-bar">
+                    <div id="modalProgressBar"></div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button id="minusBtn" class="action secondary">−1</button>
+                <button id="plusBtn" class="action primary">+1</button>
+            </div>
+
+            <button id="resetAchievementBtn" class="reset-achievement">
+                ↺ Reset Progress
+            </button>
+        </div>
+    </div>
+  
+    
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal hidden">
+    <div class="modal-backdrop" id="loginBackdrop"></div>
+
+    <section class="account-modal login-modal">
+        <button class="close-btn" id="closeLoginBtn" aria-label="Close">×</button>
+
+        <div class="account-eyebrow">YOUR JOURNEY, YOUR ACCOUNT</div>
+        <h2>Log in or Sign Up</h2>
+        <p class="account-subtitle">Save your progress. Sync it across your devices.</p>
+
+        <div class="google-slide" id="googleSlide" role="group"
+             aria-label="Slide to continue with Google">
+            <div class="google-slide-track">
+                <span class="google-slide-label">Slide to continue with Google</span>
+            </div>
+            <button type="button" id="googleSlideHandle" class="google-slide-handle"
+                    aria-label="Slide to continue with Google">
+                <span class="google-g">G</span>
+            </button>
+        </div>
+
+        <p id="loginHint" class="login-hint">Drag the Google icon all the way to the right.</p>
+    </section>
+</div>
+
+    <!-- ACCOUNT PROFILE MODAL -->
+    <div id="accountModal" class="modal hidden">
+    <div class="modal-backdrop" id="accountBackdrop"></div>
+
+    <section class="account-modal account-profile-modal">
+        <button class="close-btn" id="closeAccountBtn" aria-label="Close">×</button>
+
+        <img id="accountPhoto" class="account-large-photo" alt="Google profile">
+        <h2 id="accountDisplayName">Your Name</h2>
+        <p id="accountEmail" class="account-email"></p>
+
+        <div class="dob-section">
+            <label for="profileDob">Date of birth</label>
+            <input type="date" id="profileDob">
+            <p class="dob-hint">Used to calculate your age-based achievements.</p>
+            <button id="saveDobBtn" class="account-button account-button-primary">
+                Save date of birth
+            </button>
+        </div>
+        
+        
+        <button id="resetAllProgressBtn" class="account-button account-button-danger">
+            Reset All Progress
+        </button>
+
+        <button id="signOutBtn" class="account-button account-button-danger">
+            Sign out
+        </button>
+    </section>
+    </div>
+
+    <!-- SIGN-OUT CONFIRMATION -->
+     
+    <!-- RESET ALL PROGRESS CONFIRMATION -->
+    <div id="resetAllProgressModal" class="modal hidden">
+    <div class="modal-backdrop signout-backdrop" id="resetAllProgressBackdrop"></div>
+
+    <section class="account-modal signout-modal">
+        <div class="signout-symbol">!</div>
+        <h2>Reset all progress?</h2>
+        <p class="account-subtitle">
+            This will reset all your achievements for the currently signed-in account.
+            This action cannot be undone.
+        </p>
+
+        <div class="signout-actions">
+            <button id="cancelResetAllProgressBtn" class="account-button account-button-secondary">
+                Cancel
+            </button>
+            <button id="confirmResetAllProgressBtn" class="account-button account-button-danger">
+                Reset All
+            </button>
+        </div>
+    </section>
+    </div>
+
+    <div id="signOutConfirmModal" class="modal hidden">
+    <div class="modal-backdrop signout-backdrop" id="signOutConfirmBackdrop"></div>
+
+    <section class="account-modal signout-modal">
+        <div class="signout-symbol">↗</div>
+        <h2>Sure you want to sign out?</h2>
+        <p class="account-subtitle">Your synced progress will stay saved to your account.</p>
+
+        <div class="signout-actions">
+            <button id="cancelSignOutBtn" class="account-button account-button-secondary">
+                Return
+            </button>
+            <button id="confirmSignOutBtn" class="account-button account-button-danger">
+                Sure
+            </button>
+        </div>
+    </section>
+    </div>
+
+    <!-- RESET CONFIRM -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+
+        <div class="confirm-box">
+            <h2>Reset achievement?</h2>
+            <p>
+                This will set this achievement's progress back to zero.
+            </p>
+
+            <div class="confirm-actions">
+                <button onclick="closeConfirm()" class="action secondary">
+                    Cancel
+                </button>
+
+                <button onclick="confirmReset()" class="action danger">
+                    Reset
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    
+        <div id="mergeModal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Merge Guest Progress?</h2>
+                <p>Would you like to merge your guest achievements into your Google account?</p>
+                <div class="merge-actions">
+                <button id="mergeYes">Merge</button>
+                <button id="mergeNo">Continue without Merge</button>
+                </div>
+            </div>
+        </div>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="script.js"></script>
+
+<footer class="site-footer">
+  <p>Created by <span>Tanmay</span></p>
+  <small>© 2026 Life Achievements</small>
+</footer>
+</body>
+</html>

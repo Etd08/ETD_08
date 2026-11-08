@@ -4,7 +4,7 @@ const sites = [
 {
     name: "Life Achievements",
     description: "There is no finish line. Just things worth experiencing.",
-    url: "https://hiber-loop.github.io/Life-Achievements/",
+    url: "https://etd08.github.io/ETD_08/Life-Achievements/",
     icon: "🏆",
     status: "LIVE"
 },
@@ -12,7 +12,7 @@ const sites = [
 {
     name: "Flappy Modi",
     description: "My live browser game",
-    url: "https://tanmay478.github.io/Flappy-Modi/",
+    url: "https://etd08.github.io/ETD_08/flappy-modi/",
     icon: "🎮",
     status: "LIVE"
 }
