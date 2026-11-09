@@ -815,7 +815,7 @@ body.is-loading {
   box-shadow: 0 5px 22px rgba(var(--accent-rgb), 0.15);
 }
 
-.desktop-icon {
+.how-to-icon {
   color: var(--accent);
   font-size: 17px;
 }

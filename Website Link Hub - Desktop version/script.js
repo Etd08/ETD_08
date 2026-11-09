@@ -214,7 +214,7 @@ console.log("All systems operational.");
 
 (() => {
 
-    const button = document.querySelector('.older-version-btn');
+    const button = document.querySelector('.how-to-btn');
 
     if (!button) return;
 

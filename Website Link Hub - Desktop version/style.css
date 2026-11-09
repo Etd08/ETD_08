@@ -1166,7 +1166,7 @@ footer i {
         );
 }
 
-.older-version-btn {
+.how-to-btn {
     position: relative;
     z-index: 2;
     display: inline-flex;
@@ -1187,21 +1187,21 @@ footer i {
                 background .3s ease, box-shadow .3s ease;
 }
 
-.older-version-btn:hover {
+.how-to-btn:hover {
     transform: translateY(-5px);
     border-color: #43dcffb0;
     background: linear-gradient(135deg, #9b5cff30, #43dcff18);
     box-shadow: 0 0 45px #9b5cff35, 0 0 24px #43dcff18;
 }
 
-.older-version-arrow {
+.how-to-arrow {
     color: var(--cyan);
     font-size: 20px;
     line-height: 1;
     transition: transform .3s ease;
 }
 
-.older-version-btn:hover .older-version-arrow {
+.how-to-btn:hover .how-to-arrow {
     transform: translate(4px, -4px);
 }
 
@@ -1210,7 +1210,7 @@ footer i {
         min-height: 520px;
     }
 
-    .older-version-btn {
+    .how-to-btn {
         gap: 22px;
         padding: 17px 19px;
         font-size: 9px;
@@ -1251,7 +1251,7 @@ footer i {
    OLDER VERSION — TECH LINE EFFECT
 =================================== */
 
-.older-version-btn {
+.how-to-btn {
     position: relative;
     overflow: visible;
     isolation: isolate;
@@ -1314,14 +1314,14 @@ footer i {
 }
 
 /* Hover: lines emerge */
-.older-version-btn.tech-active .tech-line {
+.how-to-btn.tech-active .tech-line {
     opacity: 1;
     transform: translateY(-50%) rotate(var(--angle)) scaleX(1);
     transition-delay: var(--delay);
 }
 
 /* Keep button text above the effect */
-.older-version-btn > span {
+.how-to-btn > span {
     position: relative;
     z-index: 2;
 }
