@@ -1,0 +1,1640 @@
+/* =====================================
+   HOW-TO? — ETD_08
+   MAIN STYLESHEET
+===================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+.hero h1 {
+    font-family: "Orbitron", sans-serif !important;
+    font-weight: 400;
+}
+
+:root {
+    --background: #000000;
+    --text: #f1f1f7;
+    --muted: #77798b;
+    --accent: #9c9bff;
+    --glass: rgba(255, 255, 255, 0.035);
+    --border: rgba(255, 255, 255, 0.09);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* =====================================
+   BACKGROUND
+===================================== */
+
+.ambient-glow {
+    position: fixed;
+    width: 650px;
+    height: 650px;
+    top: -350px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(
+        circle,
+        rgba(84, 76, 190, 0.14),
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 10;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+
+/* =====================================
+   NAVIGATION
+===================================== */
+
+.navbar {
+    height: 76px;
+    padding: 0 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    position: relative;
+    z-index: 5;
+}
+
+.brand {
+    color: #eeeeF5;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    transition: 0.3s ease;
+}
+
+.brand:hover {
+    color: var(--accent);
+    text-shadow: 0 0 18px rgba(156,155,255,0.5);
+}
+
+.nav-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #85869a;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #8e8aff;
+    box-shadow: 0 0 12px #8e8aff;
+}
+
+/* =====================================
+   HERO
+===================================== */
+
+.hero {
+    min-height: 410px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 20px 65px;
+}
+
+.hero-content {
+    animation: heroReveal 1s ease both;
+}
+
+.hero-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #85849f;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-family: 'Orien', sans-serif;
+    font-size: clamp(75px, 12vw, 140px);
+    font-weight: normal;
+    line-height: 1.1;
+    letter-spacing: -3px;
+    color: #f4f3ff;
+    text-shadow: 0 0 45px rgba(133, 128, 255, 0.13);
+}
+
+.hero h1 span {
+    color: #9290ff;
+}
+
+.hero p {
+    margin-top: 19px;
+    color: #85869a;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    line-height: 1.8;
+}
+
+.hero-line {
+    width: 55px;
+    height: 1px;
+    margin: 35px auto 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #8583ff,
+        transparent
+    );
+}
+
+/* =====================================
+   METHODS SECTION
+===================================== */
+
+.methods-section {
+    width: min(850px, 84%);
+    margin: 0 auto;
+    padding: 35px 0 110px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 27px;
+}
+
+.section-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #8585a3;
+}
+
+.section-heading h2 {
+    margin-top: 9px;
+    font-size: 23px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+.section-count {
+    color: #74758a;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding-bottom: 4px;
+}
+
+/* =====================================
+   METHOD CARDS
+===================================== */
+
+.method-list {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.method-card {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    overflow: hidden;
+    transition:
+        border-color 0.4s ease,
+        background 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.method-card:hover {
+    border-color: rgba(150, 145, 255, 0.28);
+    background: rgba(255,255,255,0.045);
+}
+
+.method-card.active {
+    border-color: rgba(151, 146, 255, 0.42);
+    background: rgba(90, 85, 150, 0.07);
+    box-shadow: 0 10px 45px rgba(70, 60, 180, 0.08);
+}
+
+/* Card Header */
+
+.card-main {
+    min-height: 91px;
+    padding: 19px 25px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    cursor: pointer;
+}
+
+.card-number {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #777994;
+    min-width: 23px;
+}
+
+.card-title {
+    flex: 1;
+}
+
+.card-title h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ededf5;
+}
+
+.card-title p {
+    font-size: 11px;
+    color: #797b8f;
+    margin-top: 7px;
+}
+
+.card-indicator {
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    transition: 0.4s ease;
+}
+
+.card-indicator span {
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid #a3a2b7;
+    border-bottom: 1px solid #a3a2b7;
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: 0.4s ease;
+}
+
+.method-card.active .card-indicator {
+    background: rgba(145, 140, 255, 0.13);
+    border-color: rgba(145, 140, 255, 0.4);
+}
+
+.method-card.active .card-indicator span {
+    transform: rotate(225deg) translate(-2px, -2px);
+}
+
+/* =====================================
+   EXPANSION ANIMATION
+===================================== */
+
+.card-expand {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s cubic-bezier(.2,.8,.2,1);
+}
+
+.method-card.active .card-expand {
+    grid-template-rows: 1fr;
+}
+
+.card-content {
+    min-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+        opacity 0.35s ease,
+        transform 0.45s ease;
+}
+
+.method-card.active .card-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-content::before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin: 0 25px;
+    background: rgba(255,255,255,0.07);
+}
+
+.content-label {
+    display: block;
+    padding: 23px 25px 0;
+    color: #9995df;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+}
+
+.description {
+    padding: 12px 25px 23px;
+    color: #a1a1b0;
+    font-size: 12px;
+    line-height: 1.9;
+    max-width: 650px;
+}
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    padding: 0 25px 24px;
+}
+
+.contract-btn,
+.follow-btn {
+    min-height: 39px;
+    padding: 0 17px;
+    border-radius: 7px;
+    font-size: 10px;
+    letter-spacing: 0.4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.contract-btn {
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.11);
+    color: #c5c5d2;
+}
+
+.contract-btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.25);
+}
+
+.follow-btn {
+    background: #d9d8ff;
+    color: #11111c;
+    border: 1px solid #d9d8ff;
+}
+
+.follow-btn:hover {
+    background: #ffffff;
+    box-shadow: 0 0 22px rgba(160,155,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+footer {
+    min-height: 75px;
+    padding: 20px 8%;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #686a7d;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+/* =====================================
+   ANIMATIONS
+===================================== */
+
+@keyframes heroReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================
+   MOBILE RESPONSIVENESS
+===================================== */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: 65px;
+        padding: 0 6%;
+    }
+
+    .brand {
+        font-size: 13px;
+    }
+
+    .nav-status {
+        font-size: 7px;
+        letter-spacing: 1.2px;
+    }
+
+    .hero {
+        min-height: 340px;
+        padding: 65px 15px;
+    }
+
+    .hero h1 {
+        font-size: clamp(72px, 19vw, 105px);
+    }
+
+    .hero-tag {
+        font-size: 8px;
+        letter-spacing: 2.5px;
+    }
+
+    .hero p {
+        font-size: 11px;
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .methods-section {
+        width: 89%;
+        padding-bottom: 75px;
+    }
+
+    .section-heading h2 {
+        font-size: 19px;
+    }
+
+    .section-count {
+        font-size: 8px;
+    }
+
+    .card-main {
+        min-height: 82px;
+        padding: 16px;
+        gap: 14px;
+    }
+
+    .card-title h3 {
+        font-size: 12px;
+    }
+
+    .card-title p {
+        font-size: 10px;
+    }
+
+    .card-indicator {
+        width: 27px;
+        height: 27px;
+    }
+
+    .content-label {
+        padding: 20px 17px 0;
+    }
+
+    .description {
+        padding: 11px 17px 20px;
+        font-size: 11px;
+    }
+
+    .card-content::before {
+        margin: 0 17px;
+    }
+
+    .card-actions {
+        padding: 0 17px 19px;
+        gap: 8px;
+    }
+
+    .contract-btn,
+    .follow-btn {
+        flex: 1;
+        padding: 0 9px;
+        font-size: 9px;
+        min-height: 38px;
+    }
+
+    footer {
+        padding: 20px 6%;
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+
+/* =========================================
+   HOW-TO? — LIQUID GLASS SYSTEM
+========================================= */
+
+/* Glass card foundation */
+
+.method-card {
+    isolation: isolate;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.018) 42%,
+            rgba(105,95,190,0.035)
+        );
+
+    border: 1px solid rgba(255,255,255,0.13);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        inset 0 -1px 0 rgba(255,255,255,0.025),
+        0 12px 35px rgba(0,0,0,0.28);
+
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+
+    transition:
+        border-color 0.5s ease,
+        background 0.5s ease,
+        box-shadow 0.5s ease,
+        transform 0.5s cubic-bezier(.2,.8,.2,1);
+}
+
+/* Moving reflective surface */
+
+.method-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            115deg,
+            transparent 15%,
+            rgba(255,255,255,0.025) 30%,
+            rgba(255,255,255,0.11) 48%,
+            rgba(170,160,255,0.08) 52%,
+            transparent 75%
+        );
+
+    background-size: 220% 100%;
+    background-position: 100% 0;
+
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Ambient purple-blue reflection */
+
+.method-card::after {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 160px;
+    top: -100px;
+    right: -100px;
+    z-index: 0;
+    pointer-events: none;
+
+    background: radial-gradient(
+        ellipse,
+        rgba(112,105,255,0.16),
+        rgba(80,130,255,0.055) 40%,
+        transparent 72%
+    );
+
+    filter: blur(15px);
+    opacity: 0.45;
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.8s ease;
+}
+
+/* Keep content above reflections */
+
+.method-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover state */
+
+.method-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(183,176,255,0.32);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.19),
+        inset 0 0 25px rgba(150,140,255,0.035),
+        0 15px 45px rgba(35,30,100,0.18);
+}
+
+.method-card:hover::before {
+    opacity: 1;
+    animation: liquidReflection 1.8s ease forwards;
+}
+
+.method-card:hover::after {
+    opacity: 1;
+    transform: translate(-30px, 25px) scale(1.25);
+}
+
+@keyframes liquidReflection {
+    from {
+        background-position: 100% 0;
+    }
+
+    to {
+        background-position: 0% 0;
+    }
+}
+
+/* Expanded glass */
+
+.method-card.active {
+    background:
+        linear-gradient(
+            140deg,
+            rgba(105,95,190,0.11),
+            rgba(255,255,255,0.035) 45%,
+            rgba(65,90,170,0.055)
+        );
+
+    border-color: rgba(172,165,255,0.4);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        inset 0 0 35px rgba(135,125,255,0.045),
+        0 18px 55px rgba(55,45,140,0.17);
+}
+
+.method-card.active::after {
+    opacity: 1;
+    transform: translate(-35px, 25px) scale(1.4);
+}
+
+/* Header glass surface */
+
+.card-main {
+    position: relative;
+    transition: background 0.4s ease;
+}
+
+.method-card:hover .card-main {
+    background: rgba(255,255,255,0.018);
+}
+
+/* Reflective card number */
+
+.card-number {
+    color: #aaa9c4;
+    text-shadow: 0 0 12px rgba(160,150,255,0.2);
+}
+
+/* Glass indicator */
+
+.card-indicator {
+    background: rgba(255,255,255,0.035);
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.08),
+        0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Glass buttons */
+
+.contract-btn {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.025)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 3px 10px rgba(0,0,0,0.15);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.contract-btn:hover {
+    background: rgba(255,255,255,0.12);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        0 5px 18px rgba(0,0,0,0.2);
+}
+
+/* Follow button reflection */
+
+.follow-btn {
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(
+        120deg,
+        #d8d6ff,
+        #f0efff,
+        #c4c4ff
+    );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.8),
+        0 3px 15px rgba(130,120,255,0.13);
+}
+
+.follow-btn:hover {
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        0 5px 25px rgba(130,120,255,0.3);
+}
+
+/* Mobile performance */
+
+@media (max-width: 600px) {
+    .method-card {
+        backdrop-filter: blur(16px) saturate(135%);
+        -webkit-backdrop-filter: blur(16px) saturate(135%);
+    }
+
+    .method-card:hover {
+        transform: none;
+    }
+
+    .method-card::before {
+        display: none;
+    }
+}
+
+/* =========================================
+   CURSOR REACTIVE LIQUID LIGHTING
+========================================= */
+
+.method-card {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+
+    background:
+        radial-gradient(
+            320px circle at var(--mouse-x) var(--mouse-y),
+            rgba(133, 125, 255, 0.13),
+            rgba(100, 130, 255, 0.045) 40%,
+            transparent 75%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.018) 42%,
+            rgba(105,95,190,0.035)
+        );
+
+    transition:
+        border-color 0.4s ease,
+        box-shadow 0.4s ease,
+        background 0.2s ease;
+}
+
+.method-card.cursor-active {
+    border-color: rgba(166, 159, 255, 0.42);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.17),
+        inset 0 0 25px rgba(145,135,255,0.055),
+        0 12px 40px rgba(80,70,190,0.13);
+}
+
+/* Moving light reflection */
+
+.method-card.cursor-active::after {
+    width: 360px;
+    height: 260px;
+
+    top: var(--mouse-y);
+    left: var(--mouse-x);
+    right: auto;
+
+    transform: translate(-50%, -50%);
+
+    background: radial-gradient(
+        circle,
+        rgba(155, 145, 255, 0.13),
+        rgba(100, 145, 255, 0.055) 35%,
+        transparent 70%
+    );
+
+    filter: blur(22px);
+    opacity: 1;
+    transition:
+        top 0.12s ease-out,
+        left 0.12s ease-out,
+        opacity 0.35s ease;
+}
+
+@media (max-width: 600px) {
+    .method-card.cursor-active::after {
+        opacity: 0;
+    }
+
+    .method-card.cursor-active {
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.12),
+            0 8px 25px rgba(80,70,190,0.08);
+    }
+}
+
+/* =========================================
+   3D LIQUID GLASS TILT
+========================================= */
+
+.method-card {
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+
+    transform:
+        perspective(1000px)
+        rotateX(var(--tilt-x))
+        rotateY(var(--tilt-y));
+
+    transform-style: preserve-3d;
+    will-change: transform;
+
+    transition:
+        transform 0.18s ease-out,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease,
+        background 0.2s ease;
+}
+
+.method-card:hover {
+    transform:
+        perspective(1000px)
+        rotateX(var(--tilt-x))
+        rotateY(var(--tilt-y))
+        translateY(-2px);
+}
+
+/* Content depth */
+
+.card-main,
+.card-content {
+    transform: translateZ(12px);
+}
+
+/* Glass edge highlight */
+
+.method-card.cursor-active {
+    border-color: rgba(180, 174, 255, 0.48);
+}
+
+/* Disable tilt on touch devices */
+
+@media (hover: none), (max-width: 600px) {
+    .method-card,
+    .method-card:hover {
+        transform: none;
+    }
+
+    .card-main,
+    .card-content {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .method-card {
+        transform: none !important;
+    }
+}
+
+/* =========================================
+   UPGRADE 04 — LIQUID BORDER FLOW
+========================================= */
+
+.method-card {
+    --border-radius: 13px;
+    position: relative;
+    isolation: isolate;
+}
+
+/* Animated gradient border layer */
+
+.method-card.active::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: 0;
+    padding: 1px;
+    border-radius: var(--border-radius);
+
+    background: conic-gradient(
+        from var(--border-angle, 0deg),
+        transparent 0deg,
+        transparent 210deg,
+        rgba(130, 125, 255, 0.1) 245deg,
+        rgba(160, 150, 255, 0.95) 275deg,
+        rgba(100, 160, 255, 0.8) 300deg,
+        rgba(130, 125, 255, 0.1) 330deg,
+        transparent 360deg
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+
+    animation: borderFlow 5s linear infinite;
+}
+
+@keyframes borderFlow {
+    to {
+        --border-angle: 360deg;
+    }
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+/* Active border glow */
+
+.method-card.active {
+    border-color: rgba(155, 148, 255, 0.3);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.14),
+        0 0 18px rgba(110,100,255,0.07),
+        0 12px 45px rgba(75,65,190,0.13);
+}
+
+/* Smoothly disappear when collapsed */
+
+.method-card:not(.active)::before {
+    opacity: 0;
+}
+
+/* Mobile optimization */
+
+@media (max-width: 600px) {
+    .method-card.active::before {
+        animation-duration: 7s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .method-card.active::before {
+        animation: none;
+    }
+}
+/* =====================================
+   UPGRADE 05 — STAGGERED CONTENT REVEAL
+===================================== */
+
+.card-content .content-label,
+.card-content .description,
+.card-content .card-actions {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+        opacity 0.45s ease,
+        transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: 0s;
+    will-change: opacity, transform;
+}
+
+.method-card.active .card-content .content-label {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.12s;
+}
+
+.method-card.active .card-content .description {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.22s;
+}
+
+.method-card.active .card-content .card-actions {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.34s;
+}
+
+
+/* =====================================
+   UPGRADE 06 — BOTTOM RIGHT BUTTONS
+===================================== */
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content .card-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 28px;
+}
+
+.card-content .card-actions button,
+.card-content .card-actions a {
+    flex-shrink: 0;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    .card-content .card-actions {
+        gap: 8px;
+        margin-top: 22px;
+    }
+}
+
+/* =====================================
+   UPGRADE 07 — AMBIENT LIQUID FLOW
+===================================== */
+
+html {
+    background: #050509;
+}
+
+body {
+    isolation: isolate;
+    overflow-x: hidden;
+    background: #050509;
+}
+
+/* Main liquid layer */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -35%;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 20% 30%,
+            rgba(91, 45, 190, 0.24),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 75% 25%,
+            rgba(45, 65, 180, 0.19),
+            transparent 36%
+        ),
+        radial-gradient(
+            ellipse at 65% 80%,
+            rgba(120, 45, 190, 0.17),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 15% 85%,
+            rgba(45, 80, 170, 0.15),
+            transparent 35%
+        );
+
+    filter: blur(65px);
+    opacity: 0.9;
+
+    animation: liquidAmbient 32s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+/* Secondary flowing glow */
+body::after {
+    content: "";
+    position: fixed;
+    inset: -35%;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 45% 45%,
+            rgba(100, 65, 210, 0.13),
+            transparent 32%
+        ),
+        radial-gradient(
+            ellipse at 85% 65%,
+            rgba(40, 90, 210, 0.12),
+            transparent 35%
+        );
+
+    filter: blur(85px);
+    opacity: 0.8;
+
+    animation: liquidAmbientReverse 25s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+/* Organic movement */
+@keyframes liquidAmbient {
+    0% {
+        transform: translate3d(-4%, -3%, 0) rotate(0deg) scale(1);
+    }
+
+    30% {
+        transform: translate3d(3%, 5%, 0) rotate(8deg) scale(1.08);
+    }
+
+    65% {
+        transform: translate3d(-2%, 7%, 0) rotate(-6deg) scale(1.03);
+    }
+
+    100% {
+        transform: translate3d(5%, -4%, 0) rotate(5deg) scale(1.12);
+    }
+}
+
+@keyframes liquidAmbientReverse {
+    0% {
+        transform: translate3d(5%, 4%, 0) rotate(-8deg) scale(1.08);
+    }
+
+    40% {
+        transform: translate3d(-5%, -2%, 0) rotate(6deg) scale(1);
+    }
+
+    75% {
+        transform: translate3d(3%, -6%, 0) rotate(-4deg) scale(1.1);
+    }
+
+    100% {
+        transform: translate3d(-4%, 5%, 0) rotate(9deg) scale(1.04);
+    }
+}
+
+/* Mobile optimization */
+@media (max-width: 600px) {
+    body::before {
+        filter: blur(75px);
+        opacity: 0.75;
+    }
+
+    body::after {
+        filter: blur(90px);
+        opacity: 0.65;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after {
+        animation: none;
+    }
+}
+
+/* =========================================
+   UPGRADE 08 — PARTICLE DRIFT BACKGROUND
+========================================= */
+
+#particle-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.78;
+}
+
+/* Keep the website above the particles */
+
+main,
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+.navbar {
+    z-index: 5;
+}
+
+/* Ambient glow blends with the particle field */
+
+.ambient-glow {
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Keep noise subtle */
+
+.noise-overlay {
+    z-index: 10;
+}
+
+@media (max-width: 600px) {
+    #particle-canvas {
+        opacity: 0.58;
+    }
+}
+
+
+/* =========================================
+   UPGRADE 09 — 50% TRANSLUCENT GLASS
+========================================= */
+
+.method-card {
+    background:
+        radial-gradient(
+            320px circle at var(--mouse-x) var(--mouse-y),
+            rgba(133, 125, 255, 0.10),
+            transparent 75%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.025),
+            rgba(255, 255, 255, 0.005) 50%,
+            rgba(105, 95, 190, 0.015)
+        );
+
+    backdrop-filter: blur(5px) saturate(120%);
+    -webkit-backdrop-filter: blur(5px) saturate(120%);
+}
+
+.method-card.active {
+    background:
+        linear-gradient(
+            140deg,
+            rgba(105, 95, 190, 0.045),
+            rgba(255, 255, 255, 0.012) 50%,
+            rgba(65, 90, 170, 0.02)
+        );
+
+    backdrop-filter: blur(6px) saturate(125%);
+    -webkit-backdrop-filter: blur(6px) saturate(125%);
+}
+
+/* =========================================
+   UPGRADE 10 — CENTER SEARCH BAR
+========================================= */
+
+.search-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 25px 20px 35px;
+    position: relative;
+    z-index: 2;
+}
+
+.search-box {
+    width: min(480px, 100%);
+    height: 52px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 0 18px;
+
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(180, 160, 255, 0.16);
+    border-radius: 14px;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    transition: 0.3s ease;
+}
+
+.search-box:focus-within {
+    border-color: rgba(170, 145, 255, 0.5);
+    background: rgba(110, 85, 190, 0.07);
+    box-shadow: 0 0 25px rgba(120, 90, 255, 0.10);
+}
+
+.search-btn {
+    min-height: 30px;
+    padding: 0 10px;
+    border-radius: 7px;
+    font-size: 10px;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.search-btn {
+    background: rgba(255,255,255,0.045);
+    border: 0.5px solid rgba(255,255,255,0.11);
+    color: #c5c5d2;
+}
+
+.search-btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.25);
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: rgba(210, 205, 230, 0.4);
+}
+
+.search-shortcut {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: rgba(190, 180, 225, 0.4);
+}
+
+@media (max-width: 600px) {
+    .search-wrapper {
+        padding: 18px 16px 25px;
+    }
+
+    .search-box {
+        height: 48px;
+    }
+
+    .search-shortcut {
+        display: none;
+    }
+}
+
+/* =========================================
+   UPGRADE 11 — PARTICLE SEARCH TRANSITIONS
+========================================= */
+
+.search-particle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+
+    background: rgba(190, 165, 255, 0.95);
+    box-shadow: 0 0 8px rgba(145, 105, 255, 0.8);
+
+    will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .search-particle {
+        display: none;
+    }
+}
+
+/* =========================================
+   UPGRADE 12 — SEARCH + SORT LAYOUT
+========================================= */
+
+.search-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 25px 20px 35px;
+    position: relative;
+    z-index: 2;
+}
+
+.search-box {
+    width: min(480px, 100%);
+    flex: 1;
+    max-width: 480px;
+}
+
+.sort-box {
+    height: 52px;
+    width: 190px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 15px;
+
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(180, 160, 255, 0.16);
+    border-radius: 14px;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    transition: 0.3s ease;
+}
+
+.sort-box:focus-within {
+    border-color: rgba(170, 145, 255, 0.5);
+    background: rgba(110, 85, 190, 0.07);
+}
+
+.sort-icon {
+    color: #aaa0d5;
+    font-size: 21px;
+}
+
+.sort-box select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+
+    color: #ddd6f5;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.sort-box select option {
+    background: #171421;
+    color: #fff;
+}
+
+/* Sorting blur animation */
+
+.method-list.sorting-blur .method-card {
+    filter: blur(8px);
+    transition: filter 0.6s ease;
+    pointer-events: none;
+}
+
+/* Mobile layout */
+
+@media (max-width: 600px) {
+
+    .search-wrapper {
+        gap: 8px;
+        padding: 18px 16px 25px;
+    }
+
+    .search-box {
+        min-width: 0;
+        height: 48px;
+        padding: 0 12px;
+    }
+
+    .sort-box {
+        width: 145px;
+        height: 48px;
+        padding: 0 10px;
+        gap: 6px;
+    }
+
+    .sort-box select {
+        font-size: 10px;
+    }
+
+    .search-shortcut {
+        display: none;
+    }
+}   
+
+/* =========================================
+   UPGRADE 13 — CUSTOM LIQUID GLASS DROPDOWN
+========================================= */
+
+.sort-box {
+    position: relative;
+    overflow: visible;
+    z-index: 20;
+}
+
+.sort-trigger {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    background: transparent;
+    border: none;
+    outline: none;
+
+    color: #ddd6f5;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.sort-chevron {
+    color: #aaa0d5;
+    transition: transform 0.3s ease;
+}
+
+.sort-box.open .sort-chevron {
+    transform: rotate(180deg);
+}
+
+.sort-options {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+
+    padding: 7px;
+
+    background: rgba(19, 16, 32, 0.94);
+    border: 1px solid rgba(180, 150, 255, 0.2);
+    border-radius: 13px;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.97);
+
+    transition: 0.25s ease;
+}
+
+.sort-box.open .sort-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.sort-options button {
+    width: 100%;
+    padding: 11px 10px;
+
+    display: block;
+    text-align: left;
+
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+
+    color: rgba(225, 215, 255, 0.7);
+    font: inherit;
+    font-size: 11px;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.sort-options button:hover {
+    color: white;
+    background: rgba(145, 110, 255, 0.13);
+}
+
+.sort-options button.selected {
+    color: #d1baff;
+    background: rgba(145, 110, 255, 0.18);
+}

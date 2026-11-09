@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>How-To? | ETD_08</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Particle Drift Background -->
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<!-- Background -->
+<div class="ambient-glow"></div>
+<div class="noise-overlay"></div>
+
+    <!-- Background -->
+    <div class="ambient-glow"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="https://etd08.github.io/ETD_08/" class="brand">
+            ETD_08
+        </a>
+
+        <div class="nav-right">
+            <span class="nav-status">
+                <span class="status-dot"></span>
+                KNOWLEDGE DIRECTORY
+            </span>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <main>
+
+        <section class="hero">
+            <div class="hero-content">
+
+                <span class="hero-tag">
+                    YOUR GUIDE TO EVERYTHING
+                </span>
+
+                <h1>How-To<span>?</span></h1>
+
+                <p>
+                    Explore methods. Learn new things.
+                    Follow the process.
+                </p>
+
+                <div class="hero-line"></div>
+
+            </div>
+        </section>
+
+        <!-- SEARCH + SORT CONTROLS -->
+    <div class="search-wrapper">
+
+    <div class="search-box">
+        <span class="search-icon">⌕</span>
+
+        <input
+            type="search"
+            id="method-search"
+            placeholder="Search methods..."
+            autocomplete="off"
+        >
+
+        <span class="search-shortcut"><button class="search-btn"><span>Search</span></button></span>
+    </div>
+
+    <div class="sort-box" id="sort-container">
+
+    <span class="sort-icon">⇅</span>
+
+    <button class="sort-trigger" id="sort-trigger" type="button">
+        <span id="sort-label">Oldest Uploads</span>
+        <span class="sort-chevron">⌄</span>
+    </button>
+
+    <div class="sort-options" id="sort-options">
+        <button type="button" data-sort="az">A-Z</button>
+        <button type="button" data-sort="za">Z-A</button>
+        <button type="button" data-sort="latest">Latest Uploads</button>
+        <button type="button" data-sort="oldest" class="selected">Oldest Uploads</button>
+    </div>
+
+    </div>
+
+    </div>
+
+        <!-- Methods -->
+        <section class="methods-section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">THE DIRECTORY</span>
+                    <h2>Explore Methods</h2>
+                </div>
+
+                <span class="section-count" id="method-count">
+                    <span id="method-count">00</span>
+                </span>
+            </div>
+
+            <div class="method-list" id="method-list">
+
+                <!-- METHOD 01 -->
+                <article class="method-card">
+
+                    <div class="card-main">
+                        <div class="card-number">01</div>
+
+                        <div class="card-title">
+                            <h3>SWARM Rebuild Implementation</h3>
+                            <p>Enhance your website with "SWARM Rebuild"</p>
+                        </div>
+
+                        <div class="card-indicator">
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div class="card-expand">
+                        <div class="card-content">
+                            <span class="content-label">DESCRIPTION</span>
+
+                            <p class="description">
+                                SWARM Rebuild is a method that allows you to enhance your website by implementing some degital Ai arrows in your website which starts rebuilding your websites. Click "Follow Method" to learn how to implement it in your website.
+                            </p>
+
+                            <div class="card-actions">
+                                <button class="contract-btn">
+                                    <span>−</span> Contract Tab
+                                </button>
+
+                                <a class="follow-btn" href="https://docs.google.com/document/d/1C2RlsuGxpxHZXhoawlSW7krB8KBP_LrSSh80is9oW9g/edit?usp=sharing">
+                                    Follow Method <span>↗</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+
+                <!-- METHOD 02 -->
+                <article class="method-card">
+
+                    <div class="card-main">
+                        <div class="card-number">02</div>
+
+                        <div class="card-title">
+                            <h3>SWARM Rebuild Extension</h3>
+                            <p>Download Extension for your Browser of SWARM Rebuild.</p>
+                        </div>
+
+                        <div class="card-indicator">
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div class="card-expand">
+                        <div class="card-content">
+                            <span class="content-label">DESCRIPTION</span>
+
+                            <p class="description">
+                                Their is SWARM Rebuild Extention allows you to make any website all over the internet rebuild like SWARM Rebuild. Click "Follow Method" to install the Extention to your browser.
+                            </p>
+
+                            <div class="card-actions">
+                                <button class="contract-btn">
+                                    <span>−</span> Contract Tab
+                                </button>
+
+                                <a class="follow-btn" href="https://chromewebstore.google.com/detail/diaeaocnhdhbknkbfbnkjikfcgokainm?utm_source=item-share-cb">
+                                    Follow Method <span>↗</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <span>HOW-TO?</span>
+        <span>MADE BY ETD_08</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
