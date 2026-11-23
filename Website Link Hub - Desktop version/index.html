@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#070710">
+    <meta name="theme-color" content="#080711">
 
-    <title>ETD_08 | Digital Interface</title>
+    <title>ETD_08 — Link Hub</title>
 
     <script>
         (() => {
@@ -21,344 +21,161 @@
     </script>
 
     <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <script src="swarm-rebuild.js"
-        data-agents="14"
-        data-speed="1"
-        data-line="0.88"
-        data-bg="#000000"
-        data-accent="#3D8BFF"></script>
-
     <!-- BACKGROUND -->
-    <div class="grid-bg"></div>
-    <div class="ambient ambient-one"></div>
-    <div class="ambient ambient-two"></div>
-    <div class="scanline"></div>
+    <div class="ambient-background">
+        <div class="gradient-orb orb-one"></div>
+        <div class="gradient-orb orb-two"></div>
+        <div class="gradient-orb orb-three"></div>
+        <div class="gradient-orb orb-four"></div>
+    </div>
+
+    <div class="noise-overlay"></div>
 
     <!-- NAVIGATION -->
-    <header class="navbar">
+    
+<header class="topbar">
 
-        <div class="brand">
-            <span class="brand-logo">ETD_08</span>
-            <span class="brand-sub">DIGITAL INTERFACE</span>
-        </div>
+    <div class="brand">
+        <span class="brand-symbol">◈</span>
+        <span>ETD<span class="brand-dash">_</span>08</span>
+    </div>
 
-        <nav>
-            <a href="#home" class="nav-link active">HOME</a>
-            <a href="#overview" class="nav-link">OVERVIEW</a>
-            <a href="#philosophy" class="nav-link">PHILOSOPHY</a>
-            <a href="#process" class="nav-link">PROCESS</a>
-            <a href="#collection" class="nav-link">COLLECTION</a>
-            <a href="#about" class="nav-link">ABOUT</a>
-            <a href="#how-to" class="nav-link">HOW-TO?</a>
-        </nav>
+    <div class="nav-actions">
 
-        <div class="system-status">
-            <span class="status-dot"></span>
-            SYSTEM ONLINE
-        </div>
+        <button class="theme-switch"
+                id="themeToggle"
+                aria-label="Toggle theme">
 
-    </header>
+            <span class="theme-track">
+                <span class="theme-indicator" id="themeIndicator">
+                    <span id="themeIcon">☾</span>
+                </span>
+            </span>
+
+        </button>
+
+    </div>
+
+</header>
 
 
-    <!-- MAIN -->
-    <main>
 
-        <!-- HERO -->
-        <section class="hero" id="home">
-
-            <div class="hero-tag">
-                <span class="small-dot"></span>
-                PERSONAL DIGITAL ECOSYSTEM
-            </div>
-
-            <h1>
-                BEYOND<br>
-                <span>THE ORDINARY.</span>
-            </h1>
-
-            <p>
-                A collection of digital creations, experiments
-                and experiences — all in one place.
-            </p>
-
-            <a href="#collection" class="explore-btn">
-                EXPLORE COLLECTION
-                <span>↗</span>
-            </a>
-
-            <div class="hero-index">
-                <span>01 / 06</span>
-                <span>EST. 2026</span>
-            </div>
-
-            <div class="hero-decoration">
-                <div class="orbit orbit-one"></div>
-                <div class="orbit orbit-two"></div>
-                <div class="orbit-core"></div>
-            </div>
-
-        </section>
+    <!-- MAIN CONTENT -->
+    <main class="main-container">
 
         
-<!-- =========================
-     ETD_08 OVERVIEW
-========================= -->
+<section class="hero-section">
 
-<section class="overview" id="overview">
+    <!-- LEFT CONTENT -->
 
-    <div class="overview-header reveal">
-        <span class="section-label">IDENTITY / 002</span>
-        <h2>WHAT EXACTLY IS <span>ETD_08?</span></h2>
-        <p class="overview-intro">
-            Every creation begins with an idea.
-            ETD_08 is where those ideas find their digital form.
+    <div class="hero-content">
+
+        <h1>
+            Explore
+            <span class="gradient-text">Beyond.</span>
+        </h1>
+
+        <p class="hero-description">
+            Everything worth opening, in one place.
         </p>
+
+        <div class="hero-decoration">
+            <span class="decoration-line"></span>
+            <span>DISCOVER SOMETHING NEW</span>
+        </div>
+
     </div>
 
-    <div class="overview-content">
 
-        <div class="overview-main reveal">
-            <span class="content-index">01 — THE CONCEPT</span>
+    <!-- RIGHT ORBITAL MODEL -->
 
-            <h3>NOT JUST A WEBSITE.<br>
-                <span>A DIGITAL ECOSYSTEM.</span>
-            </h3>
+    <div class="orbital-stage" id="orbitalStage">
 
-            <p>
-                ETD_08 is a personal digital ecosystem built
-                around creativity, technology and experimentation.
-                It brings together different projects, interactive
-                experiences and digital creations under one
-                unified identity.
-            </p>
+    <!-- Light emitted from the centre -->
+    <div class="orbital-aura"></div>
 
-            <p>
-                From small experiments to fully developed
-                applications, every project represents an idea
-                explored, developed and transformed into something
-                that can be experienced.
-            </p>
+    <!-- Eight independent planetary orbits -->
+    <div class="planet-orbit orbit-1"><span class="planet"></span></div>
+    <div class="planet-orbit orbit-2"><span class="planet"></span></div>
+    <div class="planet-orbit orbit-3"><span class="planet"></span></div>
+    <div class="planet-orbit orbit-4"><span class="planet"></span></div>
+    <div class="planet-orbit orbit-5"><span class="planet"></span></div>
+    <div class="planet-orbit orbit-6"><span class="planet"></span></div>
+    <div class="planet-orbit orbit-7"><span class="planet"></span></div>
+    <div class="planet-orbit orbit-8"><span class="planet"></span></div>
 
-            <p>
-                Rather than being limited to a single purpose,
-                ETD_08 serves as a growing space for building,
-                exploring and showcasing digital work.
-                It is a place where imagination meets implementation.
-            </p>
-        </div>
+    <!-- Energy cube -->
+    <button class="energy-core" id="energyCore"
+        aria-label="Change energy colour"
+        title="Change energy colour">
 
-        <div class="overview-side reveal">
+        <span class="core-light"></span>
 
-            <div class="overview-panel">
-                <span class="panel-label">SYSTEM IDENTITY</span>
-                <h3>ETD_08</h3>
-                <span class="panel-subtitle">
-                    PERSONAL DIGITAL ECOSYSTEM
-                </span>
+        <span class="core-cube">
+            <span class="cube-face cube-front"></span>
+            <span class="cube-face cube-back"></span>
+            <span class="cube-face cube-right"></span>
+            <span class="cube-face cube-left"></span>
+            <span class="cube-face cube-top"></span>
+            <span class="cube-face cube-bottom"></span>
+        </span>
 
-                <div class="panel-divider"></div>
+        <span class="core-highlight"></span>
 
-                <div class="panel-row">
-                    <span>OWNER</span>
-                    <span>TANMAY</span>
-                </div>
+    </button>
 
-                <div class="panel-row">
-                    <span>FOCUS</span>
-                    <span>DIGITAL CREATION</span>
-                </div>
+</div>
 
-                <div class="panel-row">
-                    <span>NATURE</span>
-                    <span>EVER-EVOLVING</span>
-                </div>
+</section>
 
-                <div class="panel-row">
-                    <span>CONDITION</span>
-                    <span class="online-text">ALL PERFECT</span>
-                </div>
+<!-- EXPLORE MORE -->
+<section class="explore-more-section">
+
+    <div class="explore-more-heading">
+        <h2>EXPLORE MORE</h2>
+    </div>
+
+    <!-- WHAT IS ETD -->
+    <div class="howto-container">
+        <a href="https://etd08.github.io/ETD_08/About-ETD/" class="howto-button">
+            <div class="howto-left">
+                <span class="howto-icon">✦</span>
+                <span class="howto-text">What is ETD?</span>
             </div>
+            <span class="howto-arrow">↗</span>
+        </a>
+    </div>
 
-        </div>
-
+    <!-- HOW-TO -->
+    <div class="howto-container">
+        <a href="https://etd08.github.io/ETD_08/how-to/" class="howto-button">
+            <div class="howto-left">
+                <span class="howto-icon">✧</span>
+                <span class="howto-text">Enter "How-To?"</span>
+            </div>
+            <span class="howto-arrow">↗</span>
+        </a>
     </div>
 
 </section>
 
-
-
-
-<!-- =========================
-     ETD_08 PHILOSOPHY
-========================= -->
-
-<section class="philosophy" id="philosophy">
-
-    <div class="section-heading reveal">
-        <div>
-            <span class="section-label">CORE PRINCIPLES / 003</span>
-            <h2>MORE THAN JUST CODE<span>.</span></h2>
-        </div>
-    </div>
-
-    <p class="philosophy-intro reveal">
-        Technology is the medium. Creativity is the starting point.
-        The goal is to turn possibilities into experiences.
-    </p>
-
-    <div class="principle-grid">
-
-        <div class="principle-card reveal">
-            <span class="principle-number">01</span>
-            <div class="principle-icon">✦</div>
-            <h3>IMAGINATION</h3>
-            <p>
-                Every project starts with a thought, a possibility
-                or a simple question: what if this could exist?
-                Ideas are the foundation of everything created
-                within ETD_08.
-            </p>
-            <span class="principle-tag">IDEAS INTO POSSIBILITIES</span>
-        </div>
-
-        <div class="principle-card reveal">
-            <span class="principle-number">02</span>
-            <div class="principle-icon">⌘</div>
-            <h3>EXPERIMENTATION</h3>
-            <p>
-                Not every experiment needs to become a finished
-                product. Exploring new concepts, testing different
-                approaches and learning through development are
-                all part of the process.
-            </p>
-            <span class="principle-tag">EXPLORE WITHOUT LIMITS</span>
-        </div>
-
-        <div class="principle-card reveal">
-            <span class="principle-number">03</span>
-            <div class="principle-icon">◈</div>
-            <h3>IMPLEMENTATION</h3>
-            <p>
-                An idea becomes meaningful when it takes shape.
-                Through design, development and refinement,
-                concepts are transformed into working digital
-                experiences.
-            </p>
-            <span class="principle-tag">BUILD WHAT YOU ENVISION</span>
-        </div>
-
-    </div>
-
-    <div class="philosophy-statement reveal">
-        <span>THE UNDERLYING IDEA</span>
-        <h3>THINK. CREATE. EXPLORE. REPEAT.</h3>
-        <p>
-            There is always something new to build,
-            something different to discover and another
-            idea waiting to take shape.
-        </p>
-    </div>
-
-</section>
-
-
-    <!-- =========================
-     ETD_08 PROCESS
-========================= -->
-
-        <section class="process" id="process">
-
-    <div class="section-heading reveal">
-        <div>
-            <span class="section-label">DEVELOPMENT CYCLE / 004</span>
-            <h2>FROM IDEA TO INTERFACE<span>.</span></h2>
-        </div>
-    </div>
-
-    <p class="process-intro reveal">
-        Every creation follows its own journey.
-        This is the general cycle behind turning an idea
-        into a digital experience.
-    </p>
-
-    <div class="process-list">
-
-        <div class="process-step reveal">
-            <div class="process-marker">01</div>
-            <div class="process-info">
-                <span>PHASE ONE</span>
-                <h3>CONCEPT & DISCOVERY</h3>
-                <p>
-                    It begins with identifying an idea, defining
-                    its purpose and understanding what the final
-                    experience should accomplish.
-                </p>
-            </div>
-            <div class="process-symbol">⌕</div>
-        </div>
-
-        <div class="process-step reveal">
-            <div class="process-marker">02</div>
-            <div class="process-info">
-                <span>PHASE TWO</span>
-                <h3>DESIGN & DEVELOPMENT</h3>
-                <p>
-                    The concept starts taking shape through
-                    interface design, programming, functionality
-                    and the technologies required to bring
-                    the project to life.
-                </p>
-            </div>
-            <div class="process-symbol">⌘</div>
-        </div>
-
-        <div class="process-step reveal">
-            <div class="process-marker">03</div>
-            <div class="process-info">
-                <span>PHASE THREE</span>
-                <h3>TESTING & REFINEMENT</h3>
-                <p>
-                    Functionality is tested, problems are
-                    identified and details are refined.
-                    The objective is to make the experience
-                    more reliable, polished and enjoyable.
-                </p>
-            </div>
-            <div class="process-symbol">⟳</div>
-        </div>
-
-        <div class="process-step reveal">
-            <div class="process-marker">04</div>
-            <div class="process-info">
-                <span>PHASE FOUR</span>
-                <h3>RELEASE & EVOLUTION</h3>
-                <p>
-                    Once ready, the project becomes part of
-                    the collection. Its journey does not
-                    necessarily end at release — improvements
-                    and new ideas can keep it evolving.
-                </p>
-            </div>
-            <div class="process-symbol">↗</div>
-        </div>
-
-    </div>
-
-        </section>
-
-
-        <!-- COLLECTION -->
-        <section class="collection" id="collection">
+        <!-- PROJECT COLLECTION -->
+        <section class="collection-section">
 
             <div class="section-heading">
 
                 <div>
-                    <span class="section-label">DIRECTORY / 005</span>
-                    <h2>THE COLLECTION<span>.</span></h2>
+                    <span class="section-eyebrow">COLLECTION / 01</span>
+                    <h2>Featured Projects</h2>
                 </div>
 
                 <span class="collection-count">02 PROJECTS</span>
@@ -366,20 +183,33 @@
             </div>
 
 
-            <div class="project-grid">
+            
+<div class="project-grid">
 
-                <!-- PROJECT 01 -->
-                <a href="https://etd08.github.io/ETD_08/Life-Achievements/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="project-card">
+    <!-- LIFE ACHIEVEMENTS -->
+    <a href="https://hiber-loop.github.io/Life-Achievements/"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="project-card"
+       data-tilt>
 
-                    <div class="card-top">
-                        <span class="project-number">01</span>
-                        <span class="project-status">● LIVE</span>
-                    </div>
+        <div class="flip-inner">
 
-                    <div class="project-icon">🏆</div>
+            <div class="card-face card-front">
+
+                <div class="card-top">
+                    <span class="project-icon">🏆</span>
+
+                    <span class="project-status">
+                        <span></span> LIVE
+                    </span>
+                </div>
+
+                <div class="card-content">
+
+                    <span class="project-category">
+                        PERSONAL DEVELOPMENT
+                    </span>
 
                     <h3>Life Achievements</h3>
 
@@ -388,79 +218,114 @@
                         Just things worth experiencing.
                     </p>
 
-                    <div class="card-bottom">
-                        <span>PERSONAL EXPERIENCE</span>
-                        <span class="arrow">↗</span>
-                    </div>
+                </div>
 
-                </a>
+                <div class="card-bottom">
+                    <span>Explore Project</span>
+                    <span class="arrow-circle">↗</span>
+                </div>
+
+                <div class="card-number">01</div>
+
+            </div>
+
+            <div class="card-face card-back">
+
+                <span class="back-icon">🏆</span>
+
+                <span class="project-category">PROJECT / 01</span>
+
+                <h3>Life Achievements</h3>
+
+                <p>
+                    Ready to explore your next achievement?
+                </p>
+
+                <span class="back-action">
+                    OPEN PROJECT ↗
+                </span>
+
+            </div>
+
+        </div>
+
+    </a>
 
 
-                <!-- PROJECT 02 -->
-                <a href="https://etd08.github.io/ETD_08/flappy-modi/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="project-card">
+    <!-- FLAPPY MODI -->
+    <a href="https://tanmay478.github.io/Flappy-Modi/"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="project-card"
+       data-tilt>
 
-                    <div class="card-top">
-                        <span class="project-number">02</span>
-                        <span class="project-status">● LIVE</span>
-                    </div>
+        <div class="flip-inner">
 
-                    <div class="project-icon">🎮</div>
+            <div class="card-face card-front">
+
+                <div class="card-top">
+                    <span class="project-icon">🎮</span>
+
+                    <span class="project-status">
+                        <span></span> LIVE
+                    </span>
+                </div>
+
+                <div class="card-content">
+
+                    <span class="project-category">
+                        ARCADE / GAME
+                    </span>
 
                     <h3>Flappy Modi</h3>
 
                     <p>
-                        A different take on the classic
-                        arcade flying experience.
+                        A simple concept.
+                        An unpredictable adventure.
                     </p>
 
-                    <div class="card-bottom">
-                        <span>ARCADE / GAME</span>
-                        <span class="arrow">↗</span>
-                    </div>
+                </div>
 
-                </a>
+                <div class="card-bottom">
+                    <span>Play Game</span>
+                    <span class="arrow-circle">↗</span>
+                </div>
+
+                <div class="card-number">02</div>
 
             </div>
 
-        </section>
+            <div class="card-face card-back">
 
+                <span class="back-icon">🎮</span>
 
-        <!-- ABOUT -->
-        <section class="about" id="about">
+                <span class="project-category">PROJECT / 02</span>
 
-            <span class="section-label">SYSTEM / 006</span>
+                <h3>Flappy Modi</h3>
 
-            <h2>BUILT TO CREATE.</h2>
+                <p>
+                    Ready for an unpredictable adventure?
+                </p>
 
-            <p>
-                Not just websites. A growing collection
-                of ideas turned into digital experiences.
-            </p>
+                <span class="back-action">
+                    PLAY GAME ↗
+                </span>
 
-        </section>
+            </div>
 
-        <!-- SIGNAL PARTICLES / OLDER VERSION -->
-<section class="signal-section" id="how-to">
+        </div>
 
-    <canvas
-        id="particle-canvas"
-        class="signal-canvas"
-        aria-hidden="true">
-    </canvas>
-
-    <a href="https://etd08.github.io/ETD_08/how-to/" class="how-to-btn">
-
-    <div class="tech-lines" aria-hidden="true"></div>
-
-    <span>ENTER "HOW-TO?"</span>
-    <span class="how-to-arrow" aria-hidden="true">↗</span>
     </a>
 
-    <!-- FOOTER INSIDE SIGNAL BACKGROUND -->
-    <footer class="signal-footer">
+</div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
 
         <span>ETD_08 © 2026</span>
 
@@ -468,9 +333,6 @@
 
     </footer>
 
-</section>
-
-        </main>
 
     <script src="script.js"></script>
 

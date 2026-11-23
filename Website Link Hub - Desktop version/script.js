@@ -1,288 +1,537 @@
 
-// ===================================
-// ETD_08 — INTERACTION SYSTEM
-// ===================================
+/* =========================================
+   ETD_08 — ORBITAL ENERGY ENGINE
+   VERSION 4.0
+========================================= */
+
+const body = document.body;
+const root = document.documentElement;
+
+const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+const motionAllowed = !window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+).matches;
 
 
-// SCROLL REVEAL
+// =========================================
+// 01 — THEME SYSTEM
+// =========================================
 
-const observer = new IntersectionObserver((entries) => {
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
 
-    entries.forEach(entry => {
+function applyTheme(theme) {
 
-        if (entry.isIntersecting) {
+    body.classList.toggle("light-mode", theme === "light");
 
-            entry.target.classList.add("visible");
+    if (themeIcon) {
+        themeIcon.textContent = theme === "light" ? "☀" : "☾";
+    }
 
-            observer.unobserve(entry.target);
+    localStorage.setItem("etd-theme", theme);
+}
 
-        }
+applyTheme(localStorage.getItem("etd-theme") || "dark");
 
-    });
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
 
-}, {
-    threshold: 0.15
-});
-
-
-document.querySelectorAll(
-    ".project-card, .about, .section-heading, " +
-    ".overview-header, .overview-main, .overview-side, " +
-    ".principle-card, .philosophy-intro, " +
-    ".philosophy-statement, .process-intro, .process-step"
-).forEach(element => {
-
-    element.classList.add("reveal");
-
-    observer.observe(element);
-
-});
-
-
-// ACTIVE NAVIGATION
-
-const sections = document.querySelectorAll("main section[id]");
-
-const navLinks = document.querySelectorAll(".nav-link");
-
-
-function updateNavigation() {
-
-    let current = "home";
-
-    sections.forEach(section => {
-
-        if (window.scrollY >= section.offsetTop - 150) {
-
-            current = section.id;
-
-        }
-
-    });
-
-    navLinks.forEach(link => {
-
-        link.classList.toggle(
-            "active",
-            link.getAttribute("href") === `#${current}`
+        applyTheme(
+            body.classList.contains("light-mode")
+                ? "dark"
+                : "light"
         );
+
+    });
+}
+
+
+// =========================================
+// 02 — PROJECT CARD TILT
+// =========================================
+
+const cards = document.querySelectorAll("[data-tilt]");
+
+if (motionAllowed && finePointer) {
+
+    cards.forEach(card => {
+
+        card.addEventListener("mousemove", event => {
+
+            const rect = card.getBoundingClientRect();
+
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            const rotateX = (rect.height / 2 - y) / 35;
+            const rotateY = (x - rect.width / 2) / 35;
+
+            card.style.transform = `
+                perspective(1400px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-5px)
+            `;
+
+        });
+
+        card.addEventListener("mouseleave", () => {
+            card.style.transform = "";
+        });
+
+    });
+}
+
+
+// =========================================
+// 03 — BACKGROUND PARALLAX
+// =========================================
+
+const backgroundOrbs = document.querySelectorAll(".gradient-orb");
+
+let mouseX = 0;
+let mouseY = 0;
+
+let currentX = 0;
+let currentY = 0;
+
+if (motionAllowed && finePointer) {
+
+    window.addEventListener("mousemove", event => {
+
+        mouseX = (event.clientX / window.innerWidth - .5) * 2;
+        mouseY = (event.clientY / window.innerHeight - .5) * 2;
+
+    }, { passive: true });
+
+    function animateBackground() {
+
+        currentX += (mouseX - currentX) * .045;
+        currentY += (mouseY - currentY) * .045;
+
+        backgroundOrbs.forEach((orb, index) => {
+
+            const depth = (index + 1) * 14;
+
+            orb.style.translate = `
+                ${currentX * depth}px
+                ${currentY * depth}px
+            `;
+
+        });
+
+        requestAnimationFrame(animateBackground);
+    }
+
+    animateBackground();
+}
+
+
+// =========================================
+// 04 — MAGNETIC INTERACTIONS
+// =========================================
+
+const magneticElements = document.querySelectorAll(
+    ".theme-switch, .arrow-circle, .howto-arrow"
+);
+
+if (motionAllowed && finePointer) {
+
+    magneticElements.forEach(element => {
+
+        element.addEventListener("mousemove", event => {
+
+            const rect = element.getBoundingClientRect();
+
+            const x = event.clientX - rect.left - rect.width / 2;
+            const y = event.clientY - rect.top - rect.height / 2;
+
+            element.style.translate = `
+                ${x * .18}px
+                ${y * .18}px
+            `;
+
+        });
+
+        element.addEventListener("mouseleave", () => {
+            element.style.translate = "";
+        });
+
+    });
+}
+
+
+// =========================================
+// 05 — ORBITAL ENERGY SYSTEM
+// =========================================
+
+const stage = document.getElementById("orbitalStage");
+const core = document.getElementById("energyCore");
+
+const planetOrbits = stage
+    ? [...stage.querySelectorAll(".planet-orbit")]
+    : [];
+
+const energyColors = [
+
+    {
+        name: "Purple",
+        hex: "#a855f7",
+        rgb: "168, 85, 247"
+    },
+
+    {
+        name: "Pink",
+        hex: "#ec4899",
+        rgb: "236, 72, 153"
+    },
+
+    {
+        name: "Red",
+        hex: "#ef4444",
+        rgb: "239, 68, 68"
+    },
+
+    {
+        name: "Blue",
+        hex: "#3b82f6",
+        rgb: "59, 130, 246"
+    },
+
+    {
+        name: "Green",
+        hex: "#22c55e",
+        rgb: "34, 197, 94"
+    },
+
+    {
+        name: "Orange",
+        hex: "#f97316",
+        rgb: "249, 115, 22"
+    },
+
+    {
+        name: "White",
+        hex: "#ffffff",
+        rgb: "255, 255, 255"
+    }
+
+];
+
+let currentColor = 0;
+
+
+// =========================================
+// 06 — ENERGY COLOUR CONTROL
+// =========================================
+
+function applyEnergyColor(index) {
+
+    const color = energyColors[index];
+
+    root.style.setProperty("--energy-color", color.hex);
+    root.style.setProperty("--energy-rgb", color.rgb);
+
+    if (core) {
+
+        core.setAttribute(
+            "aria-label",
+            `Change energy colour. Current colour: ${color.name}`
+        );
+
+        core.title = `${color.name} energy — Click to change`;
+    }
+}
+
+applyEnergyColor(currentColor);
+
+if (core) {
+
+    core.addEventListener("click", () => {
+
+        currentColor = (currentColor + 1) % energyColors.length;
+
+        applyEnergyColor(currentColor);
+
+    });
+}
+
+
+// =========================================
+// 07 — INDEPENDENT PLANET DATA
+// =========================================
+
+const planetData = [
+    { speed: 23, direction: 1 },
+    { speed: 18, direction: -1 },
+    { speed: 15, direction: 1 },
+    { speed: 12, direction: -1 },
+    { speed: 10, direction: 1 },
+    { speed: 8.5, direction: -1 },
+    { speed: 7, direction: 1 },
+    { speed: 5.5, direction: -1 }
+];
+
+const orbitStates = planetOrbits.map((orbit, index) => {
+
+    const data = planetData[index] || {
+        speed: 10,
+        direction: 1
+    };
+
+    const randomVariation = .85 + Math.random() * .30;
+
+    return {
+        element: orbit,
+
+        angle: Math.random() * 360,
+
+        baseSpeed: data.speed * randomVariation,
+
+        direction: data.direction,
+
+        currentSpeed: 0
+    };
+
+});
+
+
+// =========================================
+// 08 — CURSOR PROXIMITY
+// =========================================
+
+let targetIntensity = 0;
+let currentIntensity = 0;
+
+let targetDim = 0;
+let currentDim = 0;
+
+let targetEdgeGlow = 0;
+let currentEdgeGlow = 0;
+
+const maximumDistance = 430;
+
+if (stage && core && finePointer && motionAllowed) {
+
+    window.addEventListener("pointermove", event => {
+
+        const rect = core.getBoundingClientRect();
+
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const dx = event.clientX - centerX;
+        const dy = event.clientY - centerY;
+
+        const distance = Math.hypot(dx, dy);
+
+        // Entire cube hit area gets maximum energy.
+
+        const coreRadius = Math.max(rect.width, rect.height) / 2;
+
+        let proximity;
+
+        if (distance <= coreRadius) {
+
+            proximity = 1;
+
+        } else {
+
+            proximity = 1 - (
+                (distance - coreRadius) /
+                (maximumDistance - coreRadius)
+            );
+
+        }
+
+        proximity = Math.max(0, Math.min(1, proximity));
+
+        targetIntensity = proximity;
+
+        // Maximum website dimming = 70%.
+
+        targetDim = proximity * .70;
+
+        // Maximum subtle edge glow.
+
+        targetEdgeGlow = proximity * .55;
+
+    }, { passive: true });
+
+    window.addEventListener("pointerleave", () => {
+
+        targetIntensity = 0;
+        targetDim = 0;
+        targetEdgeGlow = 0;
 
     });
 
 }
 
 
-window.addEventListener("scroll", updateNavigation, {
-    passive: true
-});
+// =========================================
+// 09 — ENERGY ANIMATION ENGINE
+// =========================================
 
-updateNavigation();
+let previousFrameTime = 0;
+
+function animateEnergy(timestamp = 0) {
+
+    const deltaTime = previousFrameTime
+        ? Math.min((timestamp - previousFrameTime) / 1000, .05)
+        : 0;
+
+    previousFrameTime = timestamp;
+
+    // Smooth response independent of frame rate.
+
+    const smoothing = 1 - Math.exp(-deltaTime * 9);
+
+    currentIntensity +=
+        (targetIntensity - currentIntensity) * smoothing;
+
+    currentDim +=
+        (targetDim - currentDim) * smoothing;
+
+    currentEdgeGlow +=
+        (targetEdgeGlow - currentEdgeGlow) * smoothing;
 
 
-// SMOOTH NAVIGATION
+    // =====================================
+    // ENERGY LIGHT
+    // =====================================
 
-navLinks.forEach(link => {
+    root.style.setProperty(
+        "--energy-intensity",
+        currentIntensity.toFixed(3)
+    );
 
-    link.addEventListener("click", (event) => {
 
-        const target = document.querySelector(
-            link.getAttribute("href")
+    // =====================================
+    // WEBSITE DIMMING
+    // =====================================
+
+    root.style.setProperty(
+        "--scene-dim",
+        currentDim.toFixed(3)
+    );
+
+
+    // =====================================
+    // WEBSITE EDGE GLOW
+    // =====================================
+
+    root.style.setProperty(
+        "--edge-glow",
+        currentEdgeGlow.toFixed(3)
+    );
+
+
+    // =====================================
+    // PLANET ROTATION
+    // =====================================
+
+    // Proximity multiplier:
+    // Far away = 1x speed
+    // On cube = 5.5x speed
+
+    const speedMultiplier = 1 + currentIntensity * 4.5;
+
+    orbitStates.forEach(orbit => {
+
+        orbit.currentSpeed =
+            orbit.baseSpeed * speedMultiplier;
+
+        orbit.angle +=
+            orbit.currentSpeed *
+            orbit.direction *
+            deltaTime;
+
+        orbit.element.style.transform = `
+            translate(-50%, -50%)
+            rotate(${orbit.angle}deg)
+        `;
+
+    });
+
+
+    // =====================================
+    // MAXIMUM ENERGY CLASS
+    // =====================================
+
+    if (stage) {
+
+        stage.classList.toggle(
+            "is-active",
+            currentIntensity > .75
         );
 
-        if (target) {
+    }
 
-            event.preventDefault();
-
-            target.scrollIntoView({
-                behavior: "smooth"
-            });
-
-        }
-
-    });
-
-});
+    if (motionAllowed) {
+        requestAnimationFrame(animateEnergy);
+    }
+}
 
 
-// PROJECT CARD POINTER GLOW
+// Start the animation engine.
 
-document.querySelectorAll(".project-card").forEach(card => {
+if (stage && motionAllowed) {
 
-    card.addEventListener("mousemove", (event) => {
+    requestAnimationFrame(animateEnergy);
 
-        const rect = card.getBoundingClientRect();
-
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-
-        card.style.setProperty("--mouse-x", `${x}px`);
-        card.style.setProperty("--mouse-y", `${y}px`);
-
-    });
-
-});
+}
 
 
-// SYSTEM STATUS
+// =========================================
+// 10 — STAGGERED ENTRANCE
+// =========================================
 
-console.log(
-    "%c ETD_08 ",
-    "background:#9b5cff;color:white;padding:8px;font-weight:bold;"
+const entranceElements = document.querySelectorAll(
+    ".hero-content, .orbital-stage, .section-heading, .project-card, .howto-container"
 );
 
-console.log("Digital Interface Initialized.");
-console.log("All systems operational.");
+if (
+    motionAllowed &&
+    "IntersectionObserver" in window
+) {
 
+    const observer = new IntersectionObserver(entries => {
 
-// ===================================
-// SIGNAL PARTICLES — ORIGINAL CANVAS 2D VARIANT
-// ===================================
+        entries.forEach(entry => {
 
-(() => {
-    const canvas = document.getElementById('particle-canvas');
+            if (entry.isIntersecting) {
 
-    if (!canvas) return;
+                entry.target.classList.add("visible");
 
-    const ctx = canvas.getContext('2d');
-    let width;
-    let height;
+                observer.unobserve(entry.target);
 
-    const spacing = 16;
-    const dotRadius = 1.5;
-    let time = 0;
-
-    function resize() {
-        width = canvas.width = canvas.offsetWidth;
-        height = canvas.height = canvas.offsetHeight;
-    }
-
-    window.addEventListener('resize', resize);
-    resize();
-
-    function draw() {
-        ctx.clearRect(0, 0, width, height);
-
-        const cols = Math.floor(width / spacing);
-        const rows = Math.floor(height / spacing);
-
-        const offsetX = (width - cols * spacing) / 2;
-        const offsetY = (height - rows * spacing) / 2;
-
-        for (let i = 0; i <= cols; i++) {
-            for (let j = 0; j <= rows; j++) {
-                const x = offsetX + i * spacing;
-                const y = offsetY + j * spacing;
-
-                const nx = i * 0.1;
-                const ny = j * 0.1;
-
-                const wave1 = Math.sin(nx + time * 0.5) * Math.cos(ny - time * 0.3);
-                const wave2 = Math.sin(nx * 0.5 - ny * 0.5 + time * 0.8);
-                const value = wave1 + wave2;
-
-                if (value > 0.1) {
-                    ctx.beginPath();
-                    ctx.arc(x, y, dotRadius, 0, Math.PI * 2);
-
-                    const highlightCheck = Math.sin(i * 12.34) * Math.cos(j * 56.78);
-
-                    if (highlightCheck > 0.98) {
-                        ctx.fillStyle = '#3b82f6';
-                    } else if (highlightCheck < -0.98) {
-                        ctx.fillStyle = '#8b5cf6';
-                    } else {
-                        const alpha = Math.min(0.6, (value - 0.1) * 0.8);
-                        ctx.fillStyle = `rgba(148, 163, 184, ${alpha})`;
-                    }
-
-                    ctx.fill();
-                }
             }
-        }
 
-        time += 0.02;
-        requestAnimationFrame(draw);
-    }
+        });
 
-    draw();
-})();
-
-
-// ===================================
-// OLDER VERSION — RANDOM TECH LINES
-// ===================================
-
-(() => {
-
-    const button = document.querySelector('.how-to-btn');
-
-    if (!button) return;
-
-    const container = button.querySelector('.tech-lines');
-
-    if (!container) return;
-
-    const lineCount = 20;
-
-    // Generate random lines
-    for (let i = 0; i < lineCount; i++) {
-
-        const line = document.createElement('span');
-
-        line.className = 'tech-line';
-
-        const side = Math.floor(Math.random() * 4);
-
-        let x, y, angle;
-
-        // Top
-        if (side === 0) {
-            x = Math.random() * 100;
-            y = 0;
-            angle = -90 + (Math.random() - 0.5) * 100;
-        }
-
-        // Right
-        else if (side === 1) {
-            x = 100;
-            y = Math.random() * 100;
-            angle = (Math.random() - 0.5) * 100;
-        }
-
-        // Bottom
-        else if (side === 2) {
-            x = Math.random() * 100;
-            y = 100;
-            angle = 90 + (Math.random() - 0.5) * 100;
-        }
-
-        // Left
-        else {
-            x = 0;
-            y = Math.random() * 100;
-            angle = 180 + (Math.random() - 0.5) * 100;
-        }
-
-        const length = 25 + Math.random() * 65;
-        const delay = Math.random() * 0.3;
-
-        line.style.setProperty('--x', `${x}%`);
-        line.style.setProperty('--y', `${y}%`);
-        line.style.setProperty('--angle', `${angle}deg`);
-        line.style.setProperty('--length', `${length}px`);
-        line.style.setProperty('--delay', `${delay}s`);
-
-        container.appendChild(line);
-    }
-
-    // Hover in
-    button.addEventListener('mouseenter', () => {
-        button.classList.add('tech-active');
+    }, {
+        threshold: .12
     });
 
-    // Hover out — retract
-    button.addEventListener('mouseleave', () => {
-        button.classList.remove('tech-active');
+    entranceElements.forEach(element => {
+        observer.observe(element);
     });
 
-})();
+}
+
+
+// =========================================
+// 11 — INITIALIZATION
+// =========================================
+
+console.log(
+    "%cETD_08 — ORBITAL ENERGY v4.0",
+    "color:#a855f7;font-size:16px;font-weight:bold;"
+);
+
+console.log(`${orbitStates.length} independent orbits initialized.`);
+console.log("Dynamic energy colour system initialized.");
+console.log("Cursor proximity engine initialized.");
+console.log("3D energy cube initialized.");
